@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="SORA — Modern Indian dining experience.">
+
+    <title>SORA — Modern Dining</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* ================================
+           VARIABLES
+        ================================= */
+
+        :root {
+            --bg: #0c0d0c;
+            --panel: #151713;
+            --panel2: #1b1d18;
+
+            --text: #f4f0e7;
+            --muted: #9b9b92;
+
+            --gold: #c9a86a;
+            --gold-light: #e0bf80;
+
+            --line: rgba(255, 255, 255, 0.10);
+
+            --serif: "Playfair Display", serif;
+            --sans: "DM Sans", sans-serif;
+        }
+
+
+        /* ================================
+           RESET
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            overflow-x: hidden;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: #111;
+        }
+
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .nav {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            padding: 24px 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            z-index: 100;
+
+            transition: 0.35s ease;
+        }
+
+        .nav.scrolled {
+            padding-top: 16px;
+            padding-bottom: 16px;
+
+            background: rgba(12, 13, 12, 0.86);
+
+            backdrop-filter: blur(16px);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            font-family: var(--serif);
+
+            font-size: 27px;
+
+            letter-spacing: 5px;
+        }
+
+        .brand span {
+            color: var(--gold);
+        }
+
+        .links {
+            display: flex;
+
+            gap: 30px;
+
+            list-style: none;
+        }
+
+        .links a {
+            font-size: 12px;
+
+            color: #d2d0c8;
+
+            transition: 0.3s;
+        }
+
+        .links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            color: var(--gold);
+
+            border: 1px solid var(--gold);
+
+            padding: 12px 20px;
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+
+            color: #111;
+        }
+
+        .toggle {
+            display: none;
+
+            border: 0;
+
+            background: none;
+
+            color: white;
+
+            font-size: 25px;
+        }
+
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            padding: 140px 8%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(12, 13, 12, 0.97) 5%,
+                    rgba(12, 13, 12, 0.70) 52%,
+                    rgba(12, 13, 12, 0.20)
+                ),
+                url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2200&q=90");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-inner {
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+
+            font-weight: 400;
+
+            font-size: clamp(58px, 8vw, 112px);
+
+            line-height: 0.92;
+
+            letter-spacing: -3px;
+        }
+
+        .hero h1 em {
+            color: var(--gold);
+
+            font-style: italic;
+        }
+
+        .hero p:not(.eyebrow) {
+            max-width: 520px;
+
+            color: #b4b2aa;
+
+            line-height: 1.8;
+
+            font-size: 14px;
+
+            margin: 28px 0 35px;
+        }
+
+        .actions {
+            display: flex;
+
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 22px;
+
+            border: 1px solid var(--gold);
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .btn.gold {
+            background: var(--gold);
+
+            color: #111;
+        }
+
+        .btn.gold:hover {
+            background: var(--gold-light);
+
+            transform: translateY(-2px);
+        }
+
+        .btn.ghost {
+            border-color: #666;
+
+            color: white;
+        }
+
+        .btn.ghost:hover {
+            border-color: var(--gold);
+
+            color: var(--gold);
+        }
+
+        .scroll {
+            position: absolute;
+
+            left: 8%;
+            bottom: 38px;
+
+            color: #777;
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+        }
+
+        .hero-note {
+            position: absolute;
+
+            right: 5%;
+            bottom: 38px;
+
+            writing-mode: vertical-rl;
+
+            color: #777;
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* ================================
+           MARQUEE
+        ================================= */
+
+        .marquee {
+            overflow: hidden;
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+
+            background: #11120f;
+
+            padding: 17px 0;
+        }
+
+        .track {
+            display: flex;
+
+            width: max-content;
+
+            animation: move 24s linear infinite;
+        }
+
+        .track span {
+            white-space: nowrap;
+
+            margin-right: 32px;
+
+            color: #7f7f77;
+
+            font-family: var(--serif);
+
+            font-size: 18px;
+        }
+
+        .track b {
+            color: var(--gold);
+
+            margin-left: 32px;
+        }
+
+        @keyframes move {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        /* ================================
+           INTRO
+        ================================= */
+
+        .section {
+            padding: 120px 7%;
+        }
+
+        .intro {
+            max-width: 900px;
+
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .intro h2,
+        .section-title h2,
+        .story h2,
+        .reservation h2 {
+            font-family: var(--serif);
+
+            font-weight: 400;
+
+            font-size: clamp(45px, 6vw, 78px);
+
+            line-height: 0.98;
+        }
+
+        .intro h2 em,
+        .section-title em,
+        .story h2 em,
+        .reservation h2 em {
+            color: var(--gold);
+
+            font-style: italic;
+        }
+
+        .intro p:last-child {
+            max-width: 680px;
+
+            margin: 25px auto 0;
+
+            color: var(--muted);
+
+            line-height: 1.9;
+
+            font-size: 14px;
+        }
+
+
+        /* ================================
+           STORY
+        ================================= */
+
+        .story {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+
+            padding: 0 5% 120px;
+        }
+
+        .story-img {
+            min-height: 620px;
+
+            overflow: hidden;
+        }
+
+        .story-img img {
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.8s;
+        }
+
+        .story-img:hover img {
+            transform: scale(1.04);
+        }
+
+        .story-copy {
+            background: var(--panel);
+
+            padding: 11%;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+        .story-copy p:not(.eyebrow) {
+            color: var(--muted);
+
+            line-height: 1.9;
+
+            font-size: 14px;
+
+            margin: 22px 0;
+        }
+
+        .signature {
+            margin-top: 30px;
+
+            font-family: var(--serif);
+
+            font-style: italic;
+
+            font-size: 20px;
+        }
+
+        .signature span {
+            color: var(--gold);
+        }
+
+
+        /* ================================
+           MENU
+        ================================= */
+
+        .menu {
+            background: var(--panel);
+
+            padding: 120px 7%;
+        }
+
+        .menu-head {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            gap: 30px;
+
+            margin-bottom: 45px;
+        }
+
+        .section-title > p:last-child {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin-top: 12px;
+        }
+
+        .filters {
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            background: transparent;
+
+            border: 1px solid var(--line);
+
+            color: #999;
+
+            padding: 10px 15px;
+
+            font-size: 9px;
+
+            letter-spacing: 1.5px;
+
+            transition: 0.3s;
+        }
+
+        .filter.active,
+        .filter:hover {
+            background: var(--gold);
+
+            border-color: var(--gold);
+
+            color: #111;
+        }
+
+        .dishes {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 1px;
+
+            background: var(--line);
+
+            border: 1px solid var(--line);
+        }
+
+        .dish {
+            background: var(--panel);
+
+            padding: 22px;
+
+            display: grid;
+
+            grid-template-columns: 145px 1fr;
+
+            gap: 20px;
+
+            transition: 0.3s;
+        }
+
+        .dish:hover {
+            background: #20211c;
+        }
+
+        .dish.hide {
+            display: none;
+        }
+
+        .dish-img {
+            height: 145px;
+
+            overflow: hidden;
+        }
+
+        .dish-img img {
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.5s;
+        }
+
+        .dish:hover .dish-img img {
+            transform: scale(1.06);
+        }
+
+        .dish h3 {
+            font-family: var(--serif);
+
+            font-size: 22px;
+
+            font-weight: 400;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 12px;
+        }
+
+        .price {
+            color: var(--gold);
+
+            font-family: var(--sans);
+
+            font-size: 13px;
+
+            white-space: nowrap;
+        }
+
+        .dish p {
+            color: #85857e;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+
+            color: var(--gold);
+
+            font-size: 8px;
+
+            letter-spacing: 2px;
+
+            margin-top: 13px;
+        }
+
+
+        /* ================================
+           FEATURE
+        ================================= */
+
+        .feature {
+            min-height: 680px;
+
+            display: grid;
+
+            place-items: center;
+
+            text-align: center;
+
+            padding: 100px 8%;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.48),
+                    rgba(0, 0, 0, 0.70)
+                ),
+                url("https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=2200&q=90");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+        }
+
+        .feature h2 {
+            max-width: 850px;
+
+            font-family: var(--serif);
+
+            font-weight: 400;
+
+            font-size: clamp(55px, 7vw, 95px);
+
+            line-height: 0.92;
+        }
+
+        .feature h2 em {
+            color: var(--gold);
+
+            font-style: italic;
+        }
+
+        .feature p:not(.eyebrow) {
+            max-width: 540px;
+
+            margin: 25px auto;
+
+            color: #ccc;
+
+            line-height: 1.8;
+
+            font-size: 14px;
+        }
+
+        .price-big {
+            color: var(--gold);
+
+            font-family: var(--serif);
+
+            font-size: 28px;
+
+            margin: 25px 0;
+        }
+
+        .price-big small {
+            font-family: var(--sans);
+
+            color: #aaa;
+
+            font-size: 10px;
+        }
+
+
+        /* ================================
+           STATS
+        ================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .stat {
+            text-align: center;
+
+            padding: 55px 20px;
+
+            border-right: 1px solid var(--line);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat strong {
+            display: block;
+
+            color: var(--gold);
+
+            font-family: var(--serif);
+
+            font-size: 48px;
+
+            font-weight: 400;
+        }
+
+        .stat span {
+            color: #777;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* ================================
+           GALLERY
+        ================================= */
+
+        .gallery {
+            padding: 120px 5%;
+        }
+
+        .gallery-head {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+
+            grid-template-columns: 1.4fr 1fr 1fr;
+
+            grid-template-rows: 270px 270px;
+
+            gap: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+
+            overflow: hidden;
+
+            cursor: pointer;
+        }
+
+        .gallery-item:first-child {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.6s;
+        }
+
+        .gallery-item::after {
+            content: "VIEW";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: grid;
+
+            place-items: center;
+
+            background: rgba(0, 0, 0, 0.4);
+
+            opacity: 0;
+
+            transition: 0.3s;
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+
+        /* ================================
+           REVIEWS
+        ================================= */
+
+        .reviews {
+            background: var(--panel);
+
+            padding: 120px 7%;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .review-grid {
+            max-width: 1200px;
+
+            margin: 55px auto 0;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 16px;
+        }
+
+        .review {
+            padding: 35px;
+
+            border: 1px solid var(--line);
+
+            transition: 0.3s;
+        }
+
+        .review:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(201, 168, 106, 0.45);
+        }
+
+        .stars {
+            color: var(--gold);
+
+            letter-spacing: 4px;
+
+            margin-bottom: 20px;
+        }
+
+        .review p {
+            font-family: var(--serif);
+
+            font-style: italic;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color: #c6c4bc;
+
+            margin-bottom: 25px;
+        }
+
+        .review strong {
+            font-size: 12px;
+        }
+
+        .review small {
+            display: block;
+
+            color: #666;
+
+            margin-top: 4px;
+        }
+
+
+        /* ================================
+           RESERVATION
+        ================================= */
+
+        .reservation {
+            padding: 120px 7%;
+        }
+
+        .reservation-grid {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 0.8fr 1.2fr;
+
+            gap: 100px;
+        }
+
+        .reservation h2 {
+            margin-bottom: 25px;
+        }
+
+        .reservation-info > p:not(.eyebrow) {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.9;
+
+            max-width: 420px;
+
+            margin-bottom: 30px;
+        }
+
+        .details {
+            color: #aaa;
+
+            font-size: 12px;
+
+            line-height: 2.5;
+        }
+
+        .details b {
+            color: var(--gold);
+
+            margin-right: 8px;
+        }
+
+        .form {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+        .row {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 13px;
+        }
+
+        .form input,
+        .form select,
+        .form textarea {
+            width: 100%;
+
+            background: #181916;
+
+            border: 1px solid var(--line);
+
+            color: white;
+
+            padding: 16px;
+
+            outline: none;
+
+            font-size: 12px;
+        }
+
+        .form input:focus,
+        .form select:focus,
+        .form textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .form button {
+            border: none;
+
+            width: max-content;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            background: #080908;
+
+            padding: 75px 7% 25px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+
+            gap: 35px;
+
+            padding-bottom: 60px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: #70716a;
+
+            font-size: 11px;
+
+            line-height: 2.2;
+
+            display: block;
+        }
+
+        .footer-grid h4 {
+            color: var(--gold);
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 18px;
+        }
+
+        .footer-grid a:hover {
+            color: var(--gold);
+        }
+
+        .bottom {
+            max-width: 1200px;
+
+            margin: auto;
+
+            border-top: 1px solid #222;
+
+            padding-top: 22px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #4e504a;
+
+            font-size: 9px;
+        }
+
+
+        /* ================================
+           MODAL
+        ================================= */
+
+        .modal,
+        .lightbox {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 500;
+
+            display: grid;
+
+            place-items: center;
+
+            padding: 20px;
+
+            background: rgba(0, 0, 0, 0.78);
+
+            backdrop-filter: blur(12px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.3s;
+        }
+
+        .modal.show,
+        .lightbox.show {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .modal-card {
+            position: relative;
+
+            max-width: 480px;
+
+            padding: 45px;
+
+            text-align: center;
+
+            background: #191a16;
+
+            border: 1px solid var(--line);
+        }
+
+        .modal-card h2 {
+            font-family: var(--serif);
+
+            font-size: 45px;
+
+            font-weight: 400;
+
+            margin-bottom: 12px;
+        }
+
+        .modal-card p:not(.eyebrow) {
+            color: #888;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+        .close {
+            position: absolute;
+
+            top: 10px;
+            right: 15px;
+
+            background: none;
+
+            border: none;
+
+            color: #aaa;
+
+            font-size: 26px;
+        }
+
+        .close:hover {
+            color: var(--gold);
+        }
+
+        .lightbox img {
+            max-width: 1000px;
+
+            max-height: 85vh;
+
+            object-fit: contain;
+        }
+
+        .lightbox .close {
+            position: absolute;
+
+            top: 20px;
+            right: 30px;
+
+            color: white;
+        }
+
+
+        /* ================================
+           REVEAL
+        ================================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform: none;
+        }
+
+
+        /* ================================
+           TABLET
+        ================================= */
+
+        @media (max-width: 900px) {
+
+            .links {
+                position: absolute;
+
+                top: 75px;
+                left: 5%;
+
+                width: 90%;
+
+                padding: 25px;
+
+                background: rgba(20, 21, 18, 0.97);
+
+                border: 1px solid var(--line);
+
+                flex-direction: column;
+
+                gap: 20px;
+
+                display: none;
+            }
+
+            .links.open {
+                display: flex;
+            }
+
+            .toggle {
+                display: block;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .story,
+            .reservation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-img {
+                min-height: 450px;
+            }
+
+            .dishes,
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-head {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+
+                grid-template-rows:
+                    250px
+                    250px
+                    250px;
+            }
+
+            .gallery-item:first-child {
+                grid-row: span 1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .reservation-grid {
+                gap: 50px;
+            }
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding: 125px 6% 90px;
+            }
+
+            .hero h1 {
+                font-size: 57px;
+
+                letter-spacing: -2px;
+            }
+
+            .actions {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .scroll,
+            .hero-note {
+                display: none;
+            }
+
+            .section,
+            .menu,
+            .reviews,
+            .reservation {
+                padding: 90px 5%;
+            }
+
+            .intro {
+                padding: 90px 6%;
+            }
+
+            .story {
+                padding: 0 5% 90px;
+            }
+
+            .story-copy {
+                padding: 70px 10%;
+            }
+
+            .dish {
+                grid-template-columns: 95px 1fr;
+
+                padding: 15px;
+
+                gap: 14px;
+            }
+
+            .dish-img {
+                height: 110px;
+            }
+
+            .dish h3 {
+                font-size: 18px;
+            }
+
+            .dish p {
+                font-size: 11px;
+            }
+
+            .feature {
+                min-height: 580px;
+
+                background-attachment: scroll;
+            }
+
+            .gallery {
+                padding: 90px 5%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+
+                grid-template-rows:
+                    repeat(5, 260px);
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom {
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+            .modal-card {
+                padding: 40px 25px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <header class="nav" id="nav">
+
+        <a class="brand" href="#home">
+            SORA<span>.</span>
+        </a>
+
+        <nav>
+
+            <ul class="links" id="links">
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#story">Story</a>
+                </li>
+
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+
+                <li>
+                    <a href="#gallery">Gallery</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <a class="nav-cta" href="#reservation">
+            RESERVE
+        </a>
+
+        <button class="toggle" id="toggle">
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- ================================
+         HERO
+    ================================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-inner reveal">
+
+                <p class="eyebrow">
+                    MODERN INDIAN DINING · CHANDIGARH
+                </p>
+
+                <h1>
+                    Flavour<br>
+                    <em>without limits.</em>
+                </h1>
+
+                <p>
+                    Where India's timeless flavours meet modern
+                    technique, seasonal ingredients and an atmosphere
+                    designed for unforgettable evenings.
+                </p>
+
+                <div class="actions">
+
+                    <a class="btn gold" href="#menu">
+                        EXPLORE MENU
+                    </a>
+
+                    <a class="btn ghost" href="#reservation">
+                        BOOK A TABLE
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="scroll">
+                SCROLL ↓
+            </div>
+
+            <div class="hero-note">
+                DINNER · 12:00 — 23:30
+            </div>
+
+        </section>
+
+
+        <!-- MARQUEE -->
+
+        <div class="marquee">
+
+            <div class="track">
+
+                <span>
+                    SEASONAL INGREDIENTS
+                    <b>✦</b>
+                </span>
+
+                <span>
+                    HANDCRAFTED FLAVOURS
+                    <b>✦</b>
+                </span>
+
+                <span>
+                    MODERN INDIAN CUISINE
+                    <b>✦</b>
+                </span>
+
+                <span>
+                    UNFORGETTABLE EXPERIENCES
+                    <b>✦</b>
+                </span>
+
+                <span>
+                    SEASONAL INGREDIENTS
+                    <b>✦</b>
+                </span>
+
+                <span>
+                    HANDCRAFTED FLAVOURS
+                    <b>✦</b>
+                </span>
+
+                <span>
+                    MODERN INDIAN CUISINE
+                    <b>✦</b>
+                </span>
+
+                <span>
+                    UNFORGETTABLE EXPERIENCES
+                    <b>✦</b>
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- INTRO -->
+
+        <section class="intro section reveal">
+
+            <p class="eyebrow">
+                THE SORA PHILOSOPHY
+            </p>
+
+            <h2>
+                Food should be<br>
+                <em>remembered.</em>
+            </h2>
+
+            <p>
+                We believe a great restaurant is more than a menu.
+                It is the anticipation before the first bite, the
+                conversation around the table and the memory you
+                take home.
+            </p>
+
+        </section>
+
+
+        <!-- STORY -->
+
+        <section class="story" id="story">
+
+            <div class="story-img reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=90"
+                    alt="SORA dining room">
+
+            </div>
+
+            <div class="story-copy reveal">
+
+                <div>
+
+                    <p class="eyebrow">
+                        OUR STORY
+                    </p>
+
+                    <h2>
+                        Rooted in<br>
+                        <em>India.</em>
+                    </h2>
+
+                    <p>
+                        SORA started with a simple idea:
+                        respect the ingredients, respect the craft
+                        and never stop experimenting.
+                    </p>
+
+                    <p>
+                        Our kitchen draws from regional Indian recipes,
+                        then gives them a contemporary voice through
+                        fire, fermentation, smoke and texture.
+                    </p>
+
+                    <div class="signature">
+                        <span>—</span> Chef Aarav Mehta
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENU -->
+
+        <section class="menu" id="menu">
+
+            <div class="menu-head reveal">
+
+                <div class="section-title">
+
+                    <p class="eyebrow">
+                        FROM OUR KITCHEN
+                    </p>
+
+                    <h2>
+                        The <em>Menu</em>
+                    </h2>
+
+                    <p>
+                        Curated plates. Bold flavours.
+                        Seasonal ingredients.
+                    </p>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <button
+                        class="filter active"
+                        data-filter="all">
+
+                        ALL
+
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="starter">
+
+                        STARTERS
+
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="main">
+
+                        MAINS
+
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="dessert">
+
+                        DESSERTS
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="dishes">
+
+
+                <!-- DISH 1 -->
+
+                <article
+                    class="dish reveal"
+                    data-category="starter">
+
+                    <div class="dish-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85"
+                            alt="Truffle samosa">
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Truffle Samosa
+
+                            <span class="price">
+                                ₹320
+                            </span>
+                        </h3>
+
+                        <p>
+                            Crisp pastry, spiced potato,
+                            black truffle and mint yoghurt.
+                        </p>
+
+                        <span class="tag">
+                            CHEF'S FAVOURITE
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DISH 2 -->
+
+                <article
+                    class="dish reveal"
+                    data-category="starter">
+
+                    <div class="dish-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=85"
+                            alt="Smoked paneer">
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Smoked Paneer
+
+                            <span class="price">
+                                ₹390
+                            </span>
+                        </h3>
+
+                        <p>
+                            Charred paneer, saffron cream,
+                            pistachio and smoked chilli oil.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DISH 3 -->
+
+                <article
+                    class="dish reveal"
+                    data-category="main">
+
+                    <div class="dish-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=85"
+                            alt="Butter chicken">
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            SORA Butter Chicken
+
+                            <span class="price">
+                                ₹540
+                            </span>
+                        </h3>
+
+                        <p>
+                            Tandoori chicken, smoked tomato,
+                            fenugreek, butter and cream.
+                        </p>
+
+                        <span class="tag">
+                            SIGNATURE
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DISH 4 -->
+
+                <article
+                    class="dish reveal"
+                    data-category="main">
+
+                    <div class="dish-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=600&q=85"
+                            alt="Biryani">
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Royal Biryani
+
+                            <span class="price">
+                                ₹480
+                            </span>
+                        </h3>
+
+                        <p>
+                            Aged basmati, saffron, roasted spices
+                            and slow-cooked vegetables.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DISH 5 -->
+
+                <article
+                    class="dish reveal"
+                    data-category="main">
+
+                    <div class="dish-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=85"
+                            alt="Curry">
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Rogan Josh
+
+                            <span class="price">
+                                ₹620
+                            </span>
+                        </h3>
+
+                        <p>
+                            Slow-braised lamb, Kashmiri chilli,
+                            fennel and aromatic spices.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DISH 6 -->
+
+                <article
+                    class="dish reveal"
+                    data-category="dessert">
+
+                    <div class="dish-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=85"
+                            alt="Chocolate dessert">
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Dark Chocolate Torte
+
+                            <span class="price">
+                                ₹280
+                            </span>
+                        </h3>
+
+                        <p>
+                            70% dark chocolate, sea salt,
+                            cardamom cream and cocoa crumble.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURE -->
+
+        <section class="feature">
+
+            <div class="reveal">
+
+                <p class="eyebrow">
+                    THE CHEF'S EXPERIENCE
+                </p>
+
+                <h2>
+                    Seven courses.<br>
+                    <em>One unforgettable evening.</em>
+                </h2>
+
+                <p>
+                    A seasonal tasting journey through India's
+                    diverse culinary landscape, created fresh
+                    for every chapter of the year.
+                </p>
+
+                <div class="price-big">
+                    ₹1,799
+                    <small>/ person</small>
+                </div>
+
+                <button
+                    class="btn gold"
+                    id="experienceBtn">
+
+                    RESERVE EXPERIENCE
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat reveal">
+
+                <strong data-target="12">
+                    0
+                </strong>
+
+                <span>
+                    YEARS OF CRAFT
+                </span>
+
+            </div>
+
+
+            <div class="stat reveal">
+
+                <strong data-target="48">
+                    0
+                </strong>
+
+                <span>
+                    LOCAL INGREDIENTS
+                </span>
+
+            </div>
+
+
+            <div class="stat reveal">
+
+                <strong data-target="7">
+                    0
+                </strong>
+
+                <span>
+                    TASTING COURSES
+                </span>
+
+            </div>
+
+
+            <div class="stat reveal">
+
+                <strong data-target="4.9">
+                    0
+                </strong>
+
+                <span>
+                    GUEST RATING
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- GALLERY -->
+
+        <section class="gallery" id="gallery">
+
+            <div class="gallery-head reveal">
+
+                <p class="eyebrow">
+                    INSIDE SORA
+                </p>
+
+                <h2 class="section-title">
+                    See the <em>experience.</em>
+                </h2>
+
+            </div>
+
+
+            <div class="gallery-grid">
+
+
+                <div class="gallery-item reveal">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=90"
+                        alt="Restaurant interior">
+
+                </div>
+
+
+                <div class="gallery-item reveal">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=90"
+                        alt="Dining table">
+
+                </div>
+
+
+                <div class="gallery-item reveal">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=90"
+                        alt="Dish">
+
+                </div>
+
+
+                <div class="gallery-item reveal">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=800&q=90"
+                        alt="Indian food">
+
+                </div>
+
+
+                <div class="gallery-item reveal">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=90"
+                        alt="Fine dining">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REVIEWS -->
+
+        <section class="reviews">
+
+            <div class="center reveal">
+
+                <p class="eyebrow">
+                    GUEST EXPERIENCES
+                </p>
+
+                <h2 class="section-title">
+                    Words from <em>our table.</em>
+                </h2>
+
+            </div>
+
+
+            <div class="review-grid">
+
+
+                <article class="review reveal">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        “Every course felt intentional.
+                        The food, room and service were
+                        all exceptional.”
+                    </p>
+
+                    <strong>
+                        Riya Sharma
+                    </strong>
+
+                    <small>
+                        Chandigarh
+                    </small>
+
+                </article>
+
+
+                <article class="review reveal">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        “The tasting menu completely changed
+                        what I expected from modern Indian food.”
+                    </p>
+
+                    <strong>
+                        Arjun Mehta
+                    </strong>
+
+                    <small>
+                        New Delhi
+                    </small>
+
+                </article>
+
+
+                <article class="review reveal">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        “Beautiful atmosphere and genuinely
+                        memorable flavours. I will absolutely return.”
+                    </p>
+
+                    <strong>
+                        Ananya Kapoor
+                    </strong>
+
+                    <small>
+                        Chandigarh
+                    </small>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESERVATION -->
+
+        <section
+            class="reservation"
+            id="reservation">
+
+            <div class="reservation-grid">
+
+
+                <div class="reservation-info reveal">
+
+                    <p class="eyebrow">
+                        YOUR TABLE AWAITS
+                    </p>
+
+                    <h2>
+                        Make an<br>
+                        <em>evening of it.</em>
+                    </h2>
+
+                    <p>
+                        Whether you're celebrating something special
+                        or simply looking for a memorable dinner,
+                        we'd love to host you.
+                    </p>
+
+                    <div class="details">
+
+                        <p>
+                            <b>✦</b>
+                            24 Sector 17, Chandigarh
+                        </p>
+
+                        <p>
+                            <b>✦</b>
+                            +91 98765 43210
+                        </p>
+
+                        <p>
+                            <b>✦</b>
+                            hello@sora-demo.in
+                        </p>
+
+                        <p>
+                            <b>✦</b>
+                            Mon — Sun · 12:00 — 23:30
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    class="form reveal"
+                    id="bookingForm">
+
+                    <div class="row">
+
+                        <input
+                            type="text"
+                            placeholder="Your name"
+                            required>
+
+                        <input
+                            type="tel"
+                            placeholder="Phone number"
+                            required>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <input
+                            type="date"
+                            required>
+
+                        <select required>
+
+                            <option value="">
+                                Guests
+                            </option>
+
+                            <option>
+                                1 Guest
+                            </option>
+
+                            <option>
+                                2 Guests
+                            </option>
+
+                            <option>
+                                3 Guests
+                            </option>
+
+                            <option>
+                                4 Guests
+                            </option>
+
+                            <option>
+                                5+ Guests
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <input
+                        type="email"
+                        placeholder="Email address"
+                        required>
+
+
+                    <textarea
+                        rows="5"
+                        placeholder="Special requests">
+                    </textarea>
+
+
+                    <button
+                        class="btn gold"
+                        type="submit">
+
+                        REQUEST RESERVATION
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer id="contact">
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <a class="brand" href="#home">
+                    SORA<span>.</span>
+                </a>
+
+                <p style="margin-top:18px">
+                    Modern Indian cuisine.<br>
+                    Timeless experiences.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    VISIT
+                </h4>
+
+                <p>
+                    24 Sector 17<br>
+                    Chandigarh, India
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    HOURS
+                </h4>
+
+                <p>
+                    Mon — Sun<br>
+                    12:00 — 23:30
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    FOLLOW
+                </h4>
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+                <a href="#">
+                    Google Maps
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="bottom">
+
+            <span>
+                © 2026 SORA · DEMO WEBSITE
+            </span>
+
+            <span>
+                Designed & developed by Gautam
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- RESERVATION MODAL -->
+
+    <div
+        class="modal"
+        id="modal">
+
+        <div class="modal-card">
+
+            <button
+                class="close"
+                id="closeModal">
+
+                ×
+
+            </button>
+
+            <p class="eyebrow">
+                SORA
+            </p>
+
+            <h2>
+                Table requested.
+            </h2>
+
+            <p>
+                This is a front-end demo. The reservation
+                form is ready for a real booking system
+                to be connected later.
+            </p>
+
+            <button
+                class="btn gold"
+                id="modalDone">
+
+                CLOSE
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- IMAGE LIGHTBOX -->
+
+    <div
+        class="lightbox"
+        id="lightbox">
+
+        <button
+            class="close"
+            id="closeLightbox">
+
+            ×
+
+        </button>
+
+        <img
+            id="lightboxImg"
+            alt="Expanded gallery image">
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* NAVBAR */
+
+        const nav = document.getElementById("nav");
+
+        window.addEventListener("scroll", () => {
+
+            nav.classList.toggle(
+                "scrolled",
+                window.scrollY > 50
+            );
+
+        });
+
+
+        /* MOBILE MENU */
+
+        const toggle =
+            document.getElementById("toggle");
+
+        const links =
+            document.getElementById("links");
+
+        toggle.addEventListener("click", () => {
+
+            links.classList.toggle("open");
+
+        });
+
+        links.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                links.classList.remove("open");
+
+            });
+
+        });
+
+
+        /* SCROLL ANIMATIONS */
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+
+        /* MENU FILTER */
+
+        const filters =
+            document.querySelectorAll(".filter");
+
+        const dishes =
+            document.querySelectorAll(".dish");
+
+
+        filters.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                filters.forEach(item => {
+
+                    item.classList.remove("active");
+
+                });
+
+                button.classList.add("active");
+
+
+                const category =
+                    button.dataset.filter;
+
+
+                dishes.forEach(dish => {
+
+                    const shouldHide =
+                        category !== "all" &&
+                        dish.dataset.category !== category;
+
+                    dish.classList.toggle(
+                        "hide",
+                        shouldHide
+                    );
+
+                });
+
+            });
+
+        });
+
+
+        /* COUNTERS */
+
+        let countersStarted = false;
+
+        const stats =
+            document.querySelector(".stats");
+
+
+        const counterObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    if (
+                        entries[0].isIntersecting &&
+                        !countersStarted
+                    ) {
+
+                        countersStarted = true;
+
+
+                        document
+                            .querySelectorAll("[data-target]")
+                            .forEach(counter => {
+
+                                const target =
+                                    Number(
+                                        counter.dataset.target
+                                    );
+
+                                let current = 0;
+
+                                const step =
+                                    target / 50;
+
+
+                                function updateCounter() {
+
+                                    current += step;
+
+                                    if (current >= target) {
+
+                                        counter.textContent =
+                                            Number.isInteger(target)
+                                                ? target
+                                                : target.toFixed(1);
+
+                                        return;
+
+                                    }
+
+
+                                    counter.textContent =
+                                        Number.isInteger(target)
+                                            ? Math.ceil(current)
+                                            : current.toFixed(1);
+
+
+                                    requestAnimationFrame(
+                                        updateCounter
+                                    );
+
+                                }
+
+
+                                updateCounter();
+
+                            });
+
+                    }
+
+                },
+                {
+                    threshold: 0.4
+                }
+            );
+
+
+        counterObserver.observe(stats);
+
+
+        /* MODAL */
+
+        const modal =
+            document.getElementById("modal");
+
+        const experienceButton =
+            document.getElementById("experienceBtn");
+
+        const closeModalButton =
+            document.getElementById("closeModal");
+
+        const modalDone =
+            document.getElementById("modalDone");
+
+
+        function openModal() {
+
+            modal.classList.add("show");
+
+            document.body.classList.add(
+                "no-scroll"
+            );
+
+        }
+
+
+        function closeModal() {
+
+            modal.classList.remove("show");
+
+            document.body.classList.remove(
+                "no-scroll"
+            );
+
+        }
+
+
+        experienceButton.addEventListener(
+            "click",
+            openModal
+        );
+
+
+        closeModalButton.addEventListener(
+            "click",
+            closeModal
+        );
+
+
+        modalDone.addEventListener(
+            "click",
+            closeModal
+        );
+
+
+        modal.addEventListener("click", event => {
+
+            if (event.target === modal) {
+
+                closeModal();
+
+            }
+
+        });
+
+
+        /* RESERVATION FORM */
+
+        const bookingForm =
+            document.getElementById("bookingForm");
+
+
+        bookingForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+                openModal();
+
+                bookingForm.reset();
+
+            }
+        );
+
+
+        /* GALLERY LIGHTBOX */
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightboxImg");
+
+        const closeLightboxButton =
+            document.getElementById("closeLightbox");
+
+
+        document
+            .querySelectorAll(".gallery-item")
+            .forEach(item => {
+
+                item.addEventListener(
+                    "click",
+                    () => {
+
+                        const image =
+                            item.querySelector("img");
+
+                        lightboxImage.src =
+                            image.src;
+
+                        lightbox.classList.add(
+                            "show"
+                        );
+
+                        document.body.classList.add(
+                            "no-scroll"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        function closeLightbox() {
+
+            lightbox.classList.remove(
+                "show"
+            );
+
+            document.body.classList.remove(
+                "no-scroll"
+            );
+
+        }
+
+
+        closeLightboxButton.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+
+        lightbox.addEventListener(
+            "click",
+            event => {
+
+                if (event.target === lightbox) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+
+        /* ESC KEY */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Escape") {
+
+                    closeModal();
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
